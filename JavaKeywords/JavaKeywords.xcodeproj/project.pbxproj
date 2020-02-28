@@ -22,6 +22,7 @@
 		3152607924098C97001E4657 /* KeywordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3152607824098C97001E4657 /* KeywordsViewModel.swift */; };
 		3152607B24098D6B001E4657 /* RequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3152607A24098D6B001E4657 /* RequestRouter.swift */; };
 		3152608024099C85001E4657 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3152607F24099C85001E4657 /* Spinner.swift */; };
+		315260892409B668001E4657 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260882409B668001E4657 /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		3152607824098C97001E4657 /* KeywordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeywordsViewModel.swift; path = JavaKeywords/Flow/KeywordsViewModel.swift; sourceTree = SOURCE_ROOT; };
 		3152607A24098D6B001E4657 /* RequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestRouter.swift; path = JavaKeywords/Flow/RequestRouter.swift; sourceTree = SOURCE_ROOT; };
 		3152607F24099C85001E4657 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		315260882409B668001E4657 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,13 +115,11 @@
 		3152602E24097797001E4657 /* JavaKeywords */ = {
 			isa = PBXGroup;
 			children = (
+				315260822409B2EF001E4657 /* KeywordFeature */,
 				3152608124099EA3001E4657 /* Helper */,
 				3152607C240997C1001E4657 /* Extensions */,
 				315260732409876E001E4657 /* Keys */,
 				3152606D24098564001E4657 /* Network */,
-				3152606C24098560001E4657 /* Model */,
-				3152606B2409855C001E4657 /* ViewModel */,
-				3152606A24098555001E4657 /* View */,
 				3152606424098144001E4657 /* Flow */,
 				3152602F24097797001E4657 /* AppDelegate.swift */,
 				3152603124097797001E4657 /* SceneDelegate.swift */,
@@ -201,6 +201,7 @@
 		3152607C240997C1001E4657 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				315260882409B668001E4657 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -211,6 +212,16 @@
 				3152607F24099C85001E4657 /* Spinner.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		315260822409B2EF001E4657 /* KeywordFeature */ = {
+			isa = PBXGroup;
+			children = (
+				3152606C24098560001E4657 /* Model */,
+				3152606B2409855C001E4657 /* ViewModel */,
+				3152606A24098555001E4657 /* View */,
+			);
+			path = KeywordFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +357,7 @@
 			files = (
 				3152608024099C85001E4657 /* Spinner.swift in Sources */,
 				31526071240986F9001E4657 /* KeywordsViewController.swift in Sources */,
+				315260892409B668001E4657 /* UIView.swift in Sources */,
 				3152606624098158001E4657 /* Coordinator.swift in Sources */,
 				3152607724098C13001E4657 /* KeywordsQaA.swift in Sources */,
 				3152607524098A48001E4657 /* Requester.swift in Sources */,
