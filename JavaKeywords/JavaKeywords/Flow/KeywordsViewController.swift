@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  KeywordsViewController.swift
 //  JavaKeywords
 //
 //  Created by Gabriel Conte on 28/02/20.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class KeywordsViewController: UIViewController {
+    
+    weak var coordinator: MainCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let viewModel = KeywordsViewModel()
     }
 
-
 }
-

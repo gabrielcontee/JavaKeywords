@@ -23,7 +23,9 @@ class MainCoordinator: Coordinator{
     }
     
     func start() {
-        
+        let keywordsVC = KeywordsViewController()
+        keywordsVC.coordinator = self
+        navigationController.pushViewController(keywordsVC, animated: false)
     }
     
 }
