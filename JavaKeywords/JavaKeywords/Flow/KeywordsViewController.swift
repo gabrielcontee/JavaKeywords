@@ -12,6 +12,11 @@ final class KeywordsViewController: UIViewController {
     
     weak var coordinator: MainCoordinator?
 
+    @IBOutlet weak var keywordSearchBar: UISearchBar!
+    @IBOutlet weak var keywordTableView: UITableView!
+    @IBOutlet weak var keywordCounterLabel: UILabel!
+    @IBOutlet weak var keywordCounterTimer: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
