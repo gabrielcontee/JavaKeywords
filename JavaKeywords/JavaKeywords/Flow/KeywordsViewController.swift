@@ -15,7 +15,6 @@ final class KeywordsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let viewModel = KeywordsViewModel()
     }
 
 }
