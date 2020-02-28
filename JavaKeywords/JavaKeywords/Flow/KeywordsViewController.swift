@@ -8,11 +8,14 @@
 
 import UIKit
 
-class KeywordsViewController: UIViewController {
+final class KeywordsViewController: UIViewController {
+    
+    weak var coordinator: MainCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let viewModel = KeywordsViewModel()
     }
 
 }
