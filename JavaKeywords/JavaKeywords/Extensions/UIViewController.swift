@@ -12,9 +12,11 @@ extension UIViewController {
     func showAlert(title: String, message: String, type: UIAlertController.Style = .alert, buttonMessage: String = "Ok", action: UIAlertAction? = nil) {
         let alertController = UIAlertController(title: title, message:
             message, preferredStyle: type)
-        alertController.addAction(UIAlertAction(title: buttonMessage, style: .default, handler: {action in
-            
-        }))
+        if let action = action {
+            alertController.addAction(action)
+        } else {
+            alertController.addAction(UIAlertAction(title: buttonMessage, style: .default, handler: { (_) in }))
+        }
         alertController.view.layoutIfNeeded()
         self.present(alertController, animated: true, completion: nil)
     }

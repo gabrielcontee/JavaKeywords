@@ -84,7 +84,6 @@ final class KeywordsViewModel: NSObject {
         return foundKeywords[index]
     }
     
-    
     // MARK: - Keywords validation function
     
     func verify(_ keyword: String) {
@@ -95,7 +94,6 @@ final class KeywordsViewModel: NSObject {
                 if foundKeywords.count == javaKeywords.count {
                     self.timerDelegate?.endgame(title: "Congratulations", message: "Good job! You found all the answers on time. Keep up with the great work.", actionMessage: "Play Again")
                     self.timer.invalidate()
-                    isRunning.toggle()
                 }
             } else {
                 self.kwCounterDelegate?.wrongKeyword(keyword)
@@ -103,19 +101,14 @@ final class KeywordsViewModel: NSObject {
         }
     }
     
-    func resetKeywordGame() {
-        self.timer.invalidate()
-        self.foundKeywords = []
-        self.kwCounterDelegate?.updateKeywordsFound(number: foundKeywordsNumber)
-        self.timerDelegate?.resetTimer(to: initialTimerSeconds.secondsToMinutesSeconds(), buttonState: ButtonState.start.rawValue, running: isRunning)
-        self.tableControlDelegate?.reloadData()
-    }
-    
     // MARK: - Timer functions
     
     func changeTimerState() {
         if isRunning {
-            resetKeywordGame()
+            self.foundKeywords = []
+            self.kwCounterDelegate?.updateKeywordsFound(number: foundKeywordsNumber)
+            self.timerDelegate?.resetTimer(to: initialTimerSeconds.secondsToMinutesSeconds(), buttonState: ButtonState.start.rawValue, running: isRunning)
+            self.tableControlDelegate?.reloadData()
         } else {
             seconds = initialTimerSeconds
             let time = seconds.secondsToMinutesSeconds()
@@ -131,12 +124,8 @@ final class KeywordsViewModel: NSObject {
             let time = seconds.secondsToMinutesSeconds()
             self.timerDelegate?.updateTimer(time: time)
         } else {
-            let numberOfKWFound = foundKeywords.count
-            if numberOfKWFound != javaKeywords.count {
-                self.timerDelegate?.endgame(title: "Time finished", message: "Sorry, time is up! You got \(numberOfKWFound) out of \(javaKeywords.count) answers", actionMessage: "Try Again")
-            }
             self.timer.invalidate()
-            isRunning.toggle()
+            self.timerDelegate?.endgame(title: "Time finished", message: "Sorry, time is up! You got \(foundKeywords.count) out of \(javaKeywords.count) answers", actionMessage: "Try Again")
         }
     }
     

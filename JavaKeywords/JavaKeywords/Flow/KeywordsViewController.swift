@@ -84,8 +84,6 @@ extension KeywordsViewController: UITableViewDataSource, TableReloadProtocol {
     }
 }
 
-
-
 extension KeywordsViewController: LoadableProtocol {
     
     func isLoading() {
@@ -116,8 +114,9 @@ extension KeywordsViewController: TimerProtocol {
 
     func endgame(title: String, message: String, actionMessage: String) {
         DispatchQueue.main.async {
+            self.keywordSearchBar.isUserInteractionEnabled = false
             let action = UIAlertAction(title: actionMessage, style: .default) { (_) in
-                self.viewModel.resetKeywordGame()
+                self.viewModel.changeTimerState()
             }
             self.showAlert(title: title, message: message, action: action)
         }
