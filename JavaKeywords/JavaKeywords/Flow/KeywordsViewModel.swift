@@ -17,11 +17,16 @@ protocol LoadableProtocol: class {
 protocol TimerProtocol: class {
     func resetTimer(to time: String, buttonState: String, running: Bool)
     func updateTimer(time: String)
-    func endgame(title: String, message: String)
+    func endgame(title: String, message: String, actionMessage: String)
 }
 
 protocol KWCounterProtocol: class {
     func updateKeywordsFound(number: String)
+    func wrongKeyword(_ keyword: String)
+}
+
+protocol TableReloadProtocol: class {
+    func reloadData()
 }
 
 private enum ButtonState: String {
@@ -29,18 +34,19 @@ private enum ButtonState: String {
     case reset = "Reset"
 }
 
-fileprivate let initialTimerSeconds: Int = 10
-
 final class KeywordsViewModel: NSObject {
     
     weak var loadingDelegate: LoadableProtocol?
     weak var timerDelegate: TimerProtocol?
     weak var kwCounterDelegate: KWCounterProtocol?
+    weak var tableControlDelegate: TableReloadProtocol?
+    
+    fileprivate let initialTimerSeconds: Int = 4
     
     private lazy var javaKeywords: [String] = []
     private lazy var foundKeywords: [String] = []
     private var foundKeywordsNumber: String {
-        return "\(foundKeywords.count)/\(javaKeywords.count)"
+        return "\(foundKeywords.count.twoDigitString())/\(javaKeywords.count.twoDigitString())"
     }
     
     private lazy var timer = Timer()
@@ -55,8 +61,10 @@ final class KeywordsViewModel: NSObject {
         Requester.execute(router: .keywords) { [unowned self] (result: Result<KeywordsQaA, Error>) in
             switch result {
             case .success(let keywords):
-                self.javaKeywords = keywords.answer
+                let answer = keywords.answer
+                self.javaKeywords = ["a", "b"]
                 self.loadingDelegate?.alreadyLoaded()
+                self.kwCounterDelegate?.updateKeywordsFound(number: self.foundKeywordsNumber)
                 break
             case .failure(let error):
                 self.loadingDelegate?.loadError(error)
@@ -80,26 +88,37 @@ final class KeywordsViewModel: NSObject {
     // MARK: - Keywords validation function
     
     func verify(_ keyword: String) {
-        if javaKeywords.containsWithInsentiveCase(keyword) && !foundKeywords.containsWithInsentiveCase(keyword) {
-            foundKeywords.append(keyword)
-            self.kwCounterDelegate?.updateKeywordsFound(number: foundKeywordsNumber)
+        if keyword != "" {
+            if javaKeywords.containsWithInsentiveCase(keyword) && !foundKeywords.containsWithInsentiveCase(keyword) {
+                foundKeywords.append(keyword)
+                self.kwCounterDelegate?.updateKeywordsFound(number: foundKeywordsNumber)
+                if foundKeywords.count == javaKeywords.count {
+                    self.timerDelegate?.endgame(title: "Congratulations", message: "Good job! You found all the answers on time. Keep up with the great work.", actionMessage: "Play Again")
+                    self.timer.invalidate()
+                    isRunning.toggle()
+                }
+            } else {
+                self.kwCounterDelegate?.wrongKeyword(keyword)
+            }
         }
     }
     
     func resetKeywordGame() {
         self.timer.invalidate()
+        self.foundKeywords = []
         self.kwCounterDelegate?.updateKeywordsFound(number: foundKeywordsNumber)
+        self.timerDelegate?.resetTimer(to: initialTimerSeconds.secondsToMinutesSeconds(), buttonState: ButtonState.start.rawValue, running: isRunning)
+        self.tableControlDelegate?.reloadData()
     }
     
     // MARK: - Timer functions
     
     func changeTimerState() {
-        seconds = initialTimerSeconds
-        let time = seconds.secondsToMinutesSeconds()
         if isRunning {
             resetKeywordGame()
-            self.timerDelegate?.resetTimer(to: time, buttonState: ButtonState.start.rawValue, running: isRunning)
         } else {
+            seconds = initialTimerSeconds
+            let time = seconds.secondsToMinutesSeconds()
             self.timerDelegate?.resetTimer(to: time, buttonState: ButtonState.reset.rawValue, running: isRunning)
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(KeywordsViewModel.updateTimer)), userInfo: nil, repeats: true)
         }
@@ -112,8 +131,13 @@ final class KeywordsViewModel: NSObject {
             let time = seconds.secondsToMinutesSeconds()
             self.timerDelegate?.updateTimer(time: time)
         } else {
-            changeTimerState()
-            self.timerDelegate?.endgame(title: "BLABLA", message: "FIM DE JOGO, VOCÊ........")
+            let numberOfKWFound = foundKeywords.count
+            if numberOfKWFound != javaKeywords.count {
+                self.timerDelegate?.endgame(title: "Time finished", message: "Sorry, time is up! You got \(numberOfKWFound) out of \(javaKeywords.count) answers", actionMessage: "Try Again")
+            }
+            self.timer.invalidate()
+            isRunning.toggle()
         }
     }
+    
 }

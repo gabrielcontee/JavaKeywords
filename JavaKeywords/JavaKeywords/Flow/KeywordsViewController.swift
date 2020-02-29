@@ -14,6 +14,12 @@ final class KeywordsViewController: UIViewController {
     
     weak var coordinator: MainCoordinator?
     
+    @IBOutlet weak var controlView: UIView!{
+        didSet{
+            controlView.layer.addBorder(edge: .top, color: .lightGray, thickness: 1.0)
+        }
+    }
+    
     @IBOutlet weak var challengeControlButton: UIButton!
     
     @IBOutlet weak var keywordSearchBar: UISearchBar!{
@@ -35,9 +41,16 @@ final class KeywordsViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     
     override func viewDidLoad() {
+        delegateInit()
+        viewModel.fetchJavaKeywords()
+        self.hideKeyboardWhenTappedAround() 
+    }
+    
+    private func delegateInit() {
         viewModel.timerDelegate = self
         viewModel.loadingDelegate = self
-        viewModel.fetchJavaKeywords()
+        viewModel.kwCounterDelegate = self
+        viewModel.tableControlDelegate = self
     }
     
     @IBAction func startKeywordChallenge(_ sender: Any) {
@@ -46,7 +59,16 @@ final class KeywordsViewController: UIViewController {
     
 }
 
-extension KeywordsViewController: UITableViewDataSource {
+extension KeywordsViewController: UITableViewDataSource, TableReloadProtocol {
+    
+    func reloadData() {
+        self.keywordTableView.reloadData()
+    }
+    
+    func shouldReloadData() {
+        self.keywordTableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfKeywords()
     }
@@ -55,13 +77,14 @@ extension KeywordsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "keywordCell", for: indexPath) as UITableViewCell
         cell.backgroundColor = .white
         cell.textLabel?.text = viewModel.keywordFound(for: indexPath.row)
+        cell.textLabel?.font = UIFont(name: "SF-Pro-Display-Regular", size: 17.0)
         cell.textLabel?.textColor = .black
 
         return cell
     }
-    
-    
 }
+
+
 
 extension KeywordsViewController: LoadableProtocol {
     
@@ -80,7 +103,10 @@ extension KeywordsViewController: LoadableProtocol {
     func loadError(_ error: Error) {
         DispatchQueue.main.async {
             Spinner.stop()
-            self.showAlert(title: "Network error", message: error.localizedDescription)
+            let action = UIAlertAction(title: "Try again", style: .default) { (_) in
+                self.viewModel.fetchJavaKeywords()
+            }
+            self.showAlert(title: "Network error", message: error.localizedDescription, buttonMessage: "Try again", action: action)
         }
     }
     
@@ -88,9 +114,12 @@ extension KeywordsViewController: LoadableProtocol {
 
 extension KeywordsViewController: TimerProtocol {
 
-    func endgame(title: String, message: String) {
+    func endgame(title: String, message: String, actionMessage: String) {
         DispatchQueue.main.async {
-            self.showAlert(title: title, message: message)
+            let action = UIAlertAction(title: actionMessage, style: .default) { (_) in
+                self.viewModel.resetKeywordGame()
+            }
+            self.showAlert(title: title, message: message, action: action)
         }
     }
     
@@ -116,7 +145,13 @@ extension KeywordsViewController: KWCounterProtocol {
             self.keywordCounterLabel.text = number
         }
     }
-
+    
+    func wrongKeyword(_ keyword: String) {
+        DispatchQueue.main.async {
+            self.showAlert(title: "Oops", message: "This word is not correct or has already been found", type: .actionSheet)
+        }
+    }
+    
 }
 
 extension KeywordsViewController: UISearchBarDelegate {

@@ -10,8 +10,8 @@ import Foundation
 
 extension Int {
     func secondsToMinutesSeconds() -> String {
-        let minutes = (self % 3600) / 60
-        let seconds = (self % 3600) % 60
+        let minutes = ((self % 3600) / 60).twoDigitString()
+        let seconds = ((self % 3600) % 60).twoDigitString()
         return "\(minutes):\(seconds)"
     }
 }
