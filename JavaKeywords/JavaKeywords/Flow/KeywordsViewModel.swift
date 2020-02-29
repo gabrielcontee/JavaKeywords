@@ -43,19 +43,19 @@ final class KeywordsViewModel: NSObject {
     
     fileprivate let initialTimerSeconds: Int = 300
     
-    private lazy var javaKeywords: [String] = []
-    private lazy var foundKeywords: [String] = []
+    lazy var javaKeywords: [String] = []
+    lazy var foundKeywords: [String] = []
     private var foundKeywordsNumber: String {
         return "\(foundKeywords.count.twoDigitString())/\(javaKeywords.count.twoDigitString())"
     }
     
     private lazy var timer = Timer()
     private lazy var seconds: Int = initialTimerSeconds
-    private lazy var isRunning: Bool = false
+    private(set) var isRunning: Bool = false
     
-    let apiClient: Requester
+    let apiClient: RequestExecuter
     
-    init(apiClient: Requester) {
+    init(apiClient: RequestExecuter) {
         self.apiClient = apiClient
     }
     
