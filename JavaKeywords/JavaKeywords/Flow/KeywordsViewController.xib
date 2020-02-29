@@ -6,12 +6,21 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Bold.otf">
+            <string>SFProDisplay-Bold</string>
+        </array>
+        <array key="SF-Pro-Display-Semibold.otf">
+            <string>SFProDisplay-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeywordsViewController" customModule="JavaKeywords" customModuleProvider="target">
             <connections>
                 <outlet property="challengeControlButton" destination="Tsj-nx-gCb" id="hx9-Oc-loh"/>
+                <outlet property="controlView" destination="KJo-36-T4x" id="KJ0-Ib-dsG"/>
                 <outlet property="keywordCounterLabel" destination="XVg-sz-RGU" id="0o4-1S-faH"/>
-                <outlet property="keywordSearchBar" destination="cJm-2Q-x9x" id="TJY-9C-MPt"/>
+                <outlet property="keywordSearchBar" destination="cJm-2Q-x9x" id="PNb-lN-nmY"/>
                 <outlet property="keywordTableView" destination="hHp-4k-56a" id="5oU-hp-aoh"/>
                 <outlet property="timerLabel" destination="Pul-KG-Gu8" id="z4g-3O-YZU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,15 +32,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJo-36-T4x">
-                    <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                    <rect key="frame" x="0.0" y="535" width="375" height="132"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsj-nx-gCb">
-                            <rect key="frame" x="16" y="52" width="343" height="52"/>
+                            <rect key="frame" x="16" y="64" width="343" height="52"/>
                             <color key="backgroundColor" red="1" green="0.51372549019607838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="FWB-f4-uCK"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="17"/>
                             <state key="normal" title="Start">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -45,17 +54,17 @@
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="cyd-dX-R2q">
-                            <rect key="frame" x="16" y="4" width="343" height="32"/>
+                            <rect key="frame" x="16" y="16" width="343" height="32"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVg-sz-RGU">
-                                    <rect key="frame" x="0.0" y="0.0" width="42" height="32"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="55" height="32"/>
+                                    <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="22"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pul-KG-Gu8">
-                                    <rect key="frame" x="297" y="0.0" width="46" height="32"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="280" y="0.0" width="63" height="32"/>
+                                    <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="22"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -69,28 +78,34 @@
                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Tsj-nx-gCb" secondAttribute="bottom" constant="16" id="Cg7-Mh-mXg"/>
-                        <constraint firstAttribute="height" constant="120" id="E3x-aj-ncL"/>
                         <constraint firstItem="Tsj-nx-gCb" firstAttribute="trailing" secondItem="cyd-dX-R2q" secondAttribute="trailing" id="Jdt-vf-FeX"/>
                         <constraint firstItem="Tsj-nx-gCb" firstAttribute="top" secondItem="cyd-dX-R2q" secondAttribute="bottom" constant="16" id="PAd-5k-WAQ"/>
                         <constraint firstItem="Tsj-nx-gCb" firstAttribute="leading" secondItem="KJo-36-T4x" secondAttribute="leading" constant="16" id="dz1-dB-5Em"/>
+                        <constraint firstItem="cyd-dX-R2q" firstAttribute="top" secondItem="KJo-36-T4x" secondAttribute="top" constant="16" id="dza-7Z-bFe"/>
                         <constraint firstAttribute="trailing" secondItem="Tsj-nx-gCb" secondAttribute="trailing" constant="16" id="tDz-d7-Oqw"/>
                         <constraint firstItem="Tsj-nx-gCb" firstAttribute="leading" secondItem="cyd-dX-R2q" secondAttribute="leading" id="xlB-aI-6K0"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hHp-4k-56a">
-                    <rect key="frame" x="16" y="189.5" width="343" height="349.5"/>
+                    <rect key="frame" x="16" y="189.5" width="343" height="337.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Insert word" translatesAutoresizingMaskIntoConstraints="NO" id="cJm-2Q-x9x">
                     <rect key="frame" x="16" y="133.5" width="343" height="56"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="searchField.textColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </searchBar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are all the Java keywords?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PN-0L-doj">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are all the java keywords?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PN-0L-doj">
                     <rect key="frame" x="16" y="44" width="343" height="81.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="34"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
