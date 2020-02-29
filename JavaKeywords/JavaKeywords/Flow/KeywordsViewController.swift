@@ -16,7 +16,12 @@ final class KeywordsViewController: UIViewController {
     
     @IBOutlet weak var challengeControlButton: UIButton!
     
-    @IBOutlet weak var keywordSearchBar: UISearchBar!
+    @IBOutlet weak var keywordSearchBar: UISearchBar!{
+        didSet{
+            keywordSearchBar.delegate = self
+            keywordSearchBar.isUserInteractionEnabled = false
+        }
+    }
     
     @IBOutlet weak var keywordTableView: UITableView!{
         didSet{
@@ -39,18 +44,17 @@ final class KeywordsViewController: UIViewController {
         viewModel.changeTimerState()
     }
     
-
 }
 
 extension KeywordsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.numberOfKeywords()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "keywordCell", for: indexPath) as UITableViewCell
         cell.backgroundColor = .white
-        cell.textLabel?.text = "aaaa"
+        cell.textLabel?.text = viewModel.keywordFound(for: indexPath.row)
         cell.textLabel?.textColor = .black
 
         return cell
@@ -90,8 +94,9 @@ extension KeywordsViewController: TimerProtocol {
         }
     }
     
-    func resetTimer(to seconds: String, buttonState: String) {
+    func resetTimer(to seconds: String, buttonState: String, running: Bool) {
         DispatchQueue.main.async {
+            self.keywordSearchBar.isUserInteractionEnabled = !running
             self.challengeControlButton.setTitle(buttonState, for: .normal)
             self.timerLabel.text = String(seconds)
         }
@@ -100,6 +105,31 @@ extension KeywordsViewController: TimerProtocol {
     func updateTimer(time: String) {
         DispatchQueue.main.async {
             self.timerLabel.text = time
+        }
+    }
+}
+
+extension KeywordsViewController: KWCounterProtocol {
+    
+    func updateKeywordsFound(number: String) {
+        DispatchQueue.main.async {
+            self.keywordCounterLabel.text = number
+        }
+    }
+
+}
+
+extension KeywordsViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else {
+            return
+        }
+        viewModel.verify(text)
+        DispatchQueue.main.async {
+            self.keywordSearchBar.endEditing(true)
+            self.keywordSearchBar.text = ""
+            self.keywordTableView.reloadData()
         }
     }
 }

@@ -11,7 +11,7 @@
             <connections>
                 <outlet property="challengeControlButton" destination="Tsj-nx-gCb" id="hx9-Oc-loh"/>
                 <outlet property="keywordCounterLabel" destination="XVg-sz-RGU" id="0o4-1S-faH"/>
-                <outlet property="keywordSearchBar" destination="cJm-2Q-x9x" id="TJY-9C-MPt"/>
+                <outlet property="keywordSearchBar" destination="cJm-2Q-x9x" id="PNb-lN-nmY"/>
                 <outlet property="keywordTableView" destination="hHp-4k-56a" id="5oU-hp-aoh"/>
                 <outlet property="timerLabel" destination="Pul-KG-Gu8" id="z4g-3O-YZU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -47,8 +47,8 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="cyd-dX-R2q">
                             <rect key="frame" x="16" y="4" width="343" height="32"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVg-sz-RGU">
-                                    <rect key="frame" x="0.0" y="0.0" width="42" height="32"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00/50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVg-sz-RGU">
+                                    <rect key="frame" x="0.0" y="0.0" width="46.5" height="32"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
@@ -85,8 +85,14 @@
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Insert word" translatesAutoresizingMaskIntoConstraints="NO" id="cJm-2Q-x9x">
                     <rect key="frame" x="16" y="133.5" width="343" height="56"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="searchField.textColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </searchBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are all the Java keywords?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PN-0L-doj">
                     <rect key="frame" x="16" y="44" width="343" height="81.5"/>

@@ -15,3 +15,10 @@ extension Int {
         return "\(minutes):\(seconds)"
     }
 }
+
+extension Array where Element == String {
+    
+    func containsWithInsentiveCase(_ element: Element) -> Bool {
+        return self.contains(where: {$0.caseInsensitiveCompare(element) == .orderedSame})
+    }
+}
