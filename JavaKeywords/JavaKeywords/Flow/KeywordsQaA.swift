@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class KeywordsQaA: Codable {
+struct KeywordsQaA: Codable {
     
     var question: String?
     var answer: [String] = []

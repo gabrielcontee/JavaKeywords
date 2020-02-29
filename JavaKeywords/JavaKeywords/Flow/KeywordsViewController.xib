@@ -31,7 +31,7 @@
                                 <constraint firstAttribute="height" constant="52" id="FWB-f4-uCK"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                            <state key="normal" title="Button">
+                            <state key="normal" title="Start">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
