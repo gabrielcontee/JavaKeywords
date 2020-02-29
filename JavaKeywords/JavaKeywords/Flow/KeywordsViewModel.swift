@@ -41,7 +41,7 @@ final class KeywordsViewModel: NSObject {
     weak var kwCounterDelegate: KWCounterProtocol?
     weak var tableControlDelegate: TableReloadProtocol?
     
-    fileprivate let initialTimerSeconds: Int = 4
+    fileprivate let initialTimerSeconds: Int = 300
     
     private lazy var javaKeywords: [String] = []
     private lazy var foundKeywords: [String] = []
@@ -62,7 +62,7 @@ final class KeywordsViewModel: NSObject {
             switch result {
             case .success(let keywords):
                 let answer = keywords.answer
-                self.javaKeywords = ["a", "b"]
+                self.javaKeywords = answer
                 self.loadingDelegate?.alreadyLoaded()
                 self.kwCounterDelegate?.updateKeywordsFound(number: self.foundKeywordsNumber)
                 break
