@@ -13,7 +13,9 @@ final class KeywordsViewController: UIViewController {
     private lazy var viewModel = KeywordsViewModel()
     
     weak var coordinator: MainCoordinator?
-
+    
+    @IBOutlet weak var challengeControlButton: UIButton!
+    
     @IBOutlet weak var keywordSearchBar: UISearchBar!
     
     @IBOutlet weak var keywordTableView: UITableView!{
@@ -25,12 +27,18 @@ final class KeywordsViewController: UIViewController {
     
     @IBOutlet weak var keywordCounterLabel: UILabel!
     
-    @IBOutlet weak var keywordCounterTimer: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
     
     override func viewDidLoad() {
+        viewModel.timerDelegate = self
         viewModel.loadingDelegate = self
         viewModel.fetchJavaKeywords()
     }
+    
+    @IBAction func startKeywordChallenge(_ sender: Any) {
+        viewModel.changeTimerState()
+    }
+    
 
 }
 
@@ -68,13 +76,30 @@ extension KeywordsViewController: LoadableProtocol {
     func loadError(_ error: Error) {
         DispatchQueue.main.async {
             Spinner.stop()
-            let alert = UIAlertController(title: "Network error", message: error.localizedDescription, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default) { (_) in
-                self.viewModel.fetchJavaKeywords()
-            }
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            self.showAlert(title: "Network error", message: error.localizedDescription)
         }
     }
     
+}
+
+extension KeywordsViewController: TimerProtocol {
+
+    func endgame(title: String, message: String) {
+        DispatchQueue.main.async {
+            self.showAlert(title: title, message: message)
+        }
+    }
+    
+    func resetTimer(to seconds: String, buttonState: String) {
+        DispatchQueue.main.async {
+            self.challengeControlButton.setTitle(buttonState, for: .normal)
+            self.timerLabel.text = String(seconds)
+        }
+    }
+    
+    func updateTimer(time: String) {
+        DispatchQueue.main.async {
+            self.timerLabel.text = time
+        }
+    }
 }
