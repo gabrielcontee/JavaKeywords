@@ -53,12 +53,18 @@ final class KeywordsViewModel: NSObject {
     private lazy var seconds: Int = initialTimerSeconds
     private lazy var isRunning: Bool = false
     
+    let apiClient: Requester
+    
+    init(apiClient: Requester) {
+        self.apiClient = apiClient
+    }
+    
     // MARK: - Table population functions
     
     func fetchJavaKeywords() {
         self.loadingDelegate?.isLoading()
         
-        Requester.execute(router: .keywords) { [unowned self] (result: Result<KeywordsQaA, Error>) in
+        apiClient.execute(router: .keywords) { [unowned self] (result: Result<KeywordsQaA, Error>) in
             switch result {
             case .success(let keywords):
                 let answer = keywords.answer

@@ -12,6 +12,7 @@ class MainCoordinator: Coordinator{
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    let clientProvider: Requester = Requester()
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -23,7 +24,8 @@ class MainCoordinator: Coordinator{
     }
     
     func start() {
-        let keywordsVC = KeywordsViewController()
+        let viewModel = KeywordsViewModel(apiClient: Requester())
+        let keywordsVC = KeywordsViewController(with: viewModel)
         keywordsVC.coordinator = self
         navigationController.pushViewController(keywordsVC, animated: false)
     }
