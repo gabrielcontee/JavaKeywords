@@ -1,13 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeywordsViewController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeywordsViewController" customModule="JavaKeywords" customModuleProvider="target">
             <connections>
+                <outlet property="challengeControlButton" destination="Tsj-nx-gCb" id="hx9-Oc-loh"/>
+                <outlet property="keywordCounterLabel" destination="XVg-sz-RGU" id="0o4-1S-faH"/>
+                <outlet property="keywordSearchBar" destination="cJm-2Q-x9x" id="TJY-9C-MPt"/>
+                <outlet property="keywordTableView" destination="hHp-4k-56a" id="5oU-hp-aoh"/>
+                <outlet property="timerLabel" destination="Pul-KG-Gu8" id="z4g-3O-YZU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +21,98 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJo-36-T4x">
+                    <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsj-nx-gCb">
+                            <rect key="frame" x="16" y="52" width="343" height="52"/>
+                            <color key="backgroundColor" red="1" green="0.51372549019607838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="FWB-f4-uCK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <state key="normal" title="Start">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="startKeywordChallenge:" destination="-1" eventType="touchUpInside" id="hhd-z8-SCM"/>
+                            </connections>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="cyd-dX-R2q">
+                            <rect key="frame" x="16" y="4" width="343" height="32"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVg-sz-RGU">
+                                    <rect key="frame" x="0.0" y="0.0" width="42" height="32"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pul-KG-Gu8">
+                                    <rect key="frame" x="297" y="0.0" width="46" height="32"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="kaR-cc-hde"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Tsj-nx-gCb" secondAttribute="bottom" constant="16" id="Cg7-Mh-mXg"/>
+                        <constraint firstAttribute="height" constant="120" id="E3x-aj-ncL"/>
+                        <constraint firstItem="Tsj-nx-gCb" firstAttribute="trailing" secondItem="cyd-dX-R2q" secondAttribute="trailing" id="Jdt-vf-FeX"/>
+                        <constraint firstItem="Tsj-nx-gCb" firstAttribute="top" secondItem="cyd-dX-R2q" secondAttribute="bottom" constant="16" id="PAd-5k-WAQ"/>
+                        <constraint firstItem="Tsj-nx-gCb" firstAttribute="leading" secondItem="KJo-36-T4x" secondAttribute="leading" constant="16" id="dz1-dB-5Em"/>
+                        <constraint firstAttribute="trailing" secondItem="Tsj-nx-gCb" secondAttribute="trailing" constant="16" id="tDz-d7-Oqw"/>
+                        <constraint firstItem="Tsj-nx-gCb" firstAttribute="leading" secondItem="cyd-dX-R2q" secondAttribute="leading" id="xlB-aI-6K0"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hHp-4k-56a">
+                    <rect key="frame" x="16" y="189.5" width="343" height="349.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Insert word" translatesAutoresizingMaskIntoConstraints="NO" id="cJm-2Q-x9x">
+                    <rect key="frame" x="16" y="133.5" width="343" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are all the Java keywords?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PN-0L-doj">
+                    <rect key="frame" x="16" y="44" width="343" height="81.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="hHp-4k-56a" firstAttribute="top" secondItem="cJm-2Q-x9x" secondAttribute="bottom" id="0mG-LA-XK5"/>
+                <constraint firstItem="cJm-2Q-x9x" firstAttribute="top" secondItem="6PN-0L-doj" secondAttribute="bottom" constant="8" id="2dN-iN-lc8"/>
+                <constraint firstItem="KJo-36-T4x" firstAttribute="top" secondItem="hHp-4k-56a" secondAttribute="bottom" constant="8" symbolic="YES" id="9Sj-vV-oUn"/>
+                <constraint firstItem="KJo-36-T4x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DXa-pB-sYg"/>
+                <constraint firstItem="hHp-4k-56a" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="F5v-Me-nDt"/>
+                <constraint firstItem="6PN-0L-doj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="FTP-qR-EPz"/>
+                <constraint firstItem="cJm-2Q-x9x" firstAttribute="trailing" secondItem="6PN-0L-doj" secondAttribute="trailing" id="MIT-nc-sIw"/>
+                <constraint firstItem="hHp-4k-56a" firstAttribute="trailing" secondItem="cJm-2Q-x9x" secondAttribute="trailing" id="XFU-2n-Nfv"/>
+                <constraint firstAttribute="bottom" secondItem="KJo-36-T4x" secondAttribute="bottom" id="irY-i5-Vnc"/>
+                <constraint firstItem="cJm-2Q-x9x" firstAttribute="leading" secondItem="6PN-0L-doj" secondAttribute="leading" id="nGs-93-2V5"/>
+                <constraint firstAttribute="trailing" secondItem="KJo-36-T4x" secondAttribute="trailing" id="o4V-R5-qv2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hHp-4k-56a" secondAttribute="trailing" constant="16" id="ubm-0Z-eD6"/>
+                <constraint firstItem="hHp-4k-56a" firstAttribute="leading" secondItem="cJm-2Q-x9x" secondAttribute="leading" id="wDg-wt-GsY"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="138.98050974512745"/>
         </view>
     </objects>
 </document>
