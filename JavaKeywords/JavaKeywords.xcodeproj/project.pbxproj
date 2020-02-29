@@ -11,8 +11,7 @@
 		3152603224097797001E4657 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3152603124097797001E4657 /* SceneDelegate.swift */; };
 		315260392409779C001E4657 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 315260382409779C001E4657 /* Assets.xcassets */; };
 		3152603C2409779C001E4657 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3152603A2409779C001E4657 /* LaunchScreen.storyboard */; };
-		315260472409779C001E4657 /* JavaKeywordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260462409779C001E4657 /* JavaKeywordsTests.swift */; };
-		315260522409779C001E4657 /* JavaKeywordsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260512409779C001E4657 /* JavaKeywordsUITests.swift */; };
+		315260472409779C001E4657 /* KeywordsLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260462409779C001E4657 /* KeywordsLogicTests.swift */; };
 		3152606624098158001E4657 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3152606524098158001E4657 /* Coordinator.swift */; };
 		315260682409816D001E4657 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260672409816D001E4657 /* MainCoordinator.swift */; };
 		31526071240986F9001E4657 /* KeywordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3152606F240986F9001E4657 /* KeywordsViewController.swift */; };
@@ -39,13 +38,6 @@
 			remoteGlobalIDString = 3152602B24097797001E4657;
 			remoteInfo = JavaKeywords;
 		};
-		3152604E2409779C001E4657 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3152602424097797001E4657 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3152602B24097797001E4657;
-			remoteInfo = JavaKeywords;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -56,9 +48,8 @@
 		3152603B2409779C001E4657 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3152603D2409779C001E4657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		315260422409779C001E4657 /* JavaKeywordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JavaKeywordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		315260462409779C001E4657 /* JavaKeywordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaKeywordsTests.swift; sourceTree = "<group>"; };
+		315260462409779C001E4657 /* KeywordsLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsLogicTests.swift; sourceTree = "<group>"; };
 		315260482409779C001E4657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3152604D2409779C001E4657 /* JavaKeywordsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JavaKeywordsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		315260512409779C001E4657 /* JavaKeywordsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaKeywordsUITests.swift; sourceTree = "<group>"; };
 		315260532409779C001E4657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3152606524098158001E4657 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -95,13 +86,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3152604A2409779C001E4657 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -120,7 +104,6 @@
 			children = (
 				3152602C24097797001E4657 /* JavaKeywords.app */,
 				315260422409779C001E4657 /* JavaKeywordsTests.xctest */,
-				3152604D2409779C001E4657 /* JavaKeywordsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,7 +130,7 @@
 		315260452409779C001E4657 /* JavaKeywordsTests */ = {
 			isa = PBXGroup;
 			children = (
-				315260462409779C001E4657 /* JavaKeywordsTests.swift */,
+				315260462409779C001E4657 /* KeywordsLogicTests.swift */,
 				315260482409779C001E4657 /* Info.plist */,
 			);
 			path = JavaKeywordsTests;
@@ -290,24 +273,6 @@
 			productReference = 315260422409779C001E4657 /* JavaKeywordsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3152604C2409779C001E4657 /* JavaKeywordsUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3152605C2409779C001E4657 /* Build configuration list for PBXNativeTarget "JavaKeywordsUITests" */;
-			buildPhases = (
-				315260492409779C001E4657 /* Sources */,
-				3152604A2409779C001E4657 /* Frameworks */,
-				3152604B2409779C001E4657 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3152604F2409779C001E4657 /* PBXTargetDependency */,
-			);
-			name = JavaKeywordsUITests;
-			productName = JavaKeywordsUITests;
-			productReference = 3152604D2409779C001E4657 /* JavaKeywordsUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -322,10 +287,6 @@
 						CreatedOnToolsVersion = 11.3.1;
 					};
 					315260412409779C001E4657 = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = 3152602B24097797001E4657;
-					};
-					3152604C2409779C001E4657 = {
 						CreatedOnToolsVersion = 11.3.1;
 						TestTargetID = 3152602B24097797001E4657;
 					};
@@ -346,7 +307,6 @@
 			targets = (
 				3152602B24097797001E4657 /* JavaKeywords */,
 				315260412409779C001E4657 /* JavaKeywordsTests */,
-				3152604C2409779C001E4657 /* JavaKeywordsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -365,13 +325,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		315260402409779C001E4657 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3152604B2409779C001E4657 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -407,15 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				315260472409779C001E4657 /* JavaKeywordsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		315260492409779C001E4657 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				315260522409779C001E4657 /* JavaKeywordsUITests.swift in Sources */,
+				315260472409779C001E4657 /* KeywordsLogicTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,11 +371,6 @@
 			isa = PBXTargetDependency;
 			target = 3152602B24097797001E4657 /* JavaKeywords */;
 			targetProxy = 315260432409779C001E4657 /* PBXContainerItemProxy */;
-		};
-		3152604F2409779C001E4657 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3152602B24097797001E4657 /* JavaKeywords */;
-			targetProxy = 3152604E2409779C001E4657 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -640,46 +580,6 @@
 			};
 			name = Release;
 		};
-		3152605D2409779C001E4657 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2HR54FA3Z7;
-				INFOPLIST_FILE = JavaKeywordsUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = gabrielcontee.JavaKeywordsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = JavaKeywords;
-			};
-			name = Debug;
-		};
-		3152605E2409779C001E4657 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2HR54FA3Z7;
-				INFOPLIST_FILE = JavaKeywordsUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = gabrielcontee.JavaKeywordsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = JavaKeywords;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -706,15 +606,6 @@
 			buildConfigurations = (
 				3152605A2409779C001E4657 /* Debug */,
 				3152605B2409779C001E4657 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3152605C2409779C001E4657 /* Build configuration list for PBXNativeTarget "JavaKeywordsUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3152605D2409779C001E4657 /* Debug */,
-				3152605E2409779C001E4657 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

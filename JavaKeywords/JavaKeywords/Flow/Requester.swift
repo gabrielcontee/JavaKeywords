@@ -9,12 +9,18 @@
 import Foundation
 
 protocol RequestExecuter {
-    static func execute<T: Codable>(router: Router, completion: @escaping (Result<T, Error>) -> ())
+    func execute<T: Codable>(router: Router, completion: @escaping (Result<T, Error>) -> ())
 }
 
 final class Requester: RequestExecuter {
     
-    static func execute<T: Codable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
+    let session: URLSession
+    
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
+    func execute<T: Codable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
         
         guard var url = URL(string: router.baseUrl) else {
             return
@@ -28,7 +34,6 @@ final class Requester: RequestExecuter {
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
-        let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             
             guard error == nil else {

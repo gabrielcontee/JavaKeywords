@@ -43,22 +43,28 @@ final class KeywordsViewModel: NSObject {
     
     fileprivate let initialTimerSeconds: Int = 300
     
-    private lazy var javaKeywords: [String] = []
-    private lazy var foundKeywords: [String] = []
+    lazy var javaKeywords: [String] = []
+    lazy var foundKeywords: [String] = []
     private var foundKeywordsNumber: String {
         return "\(foundKeywords.count.twoDigitString())/\(javaKeywords.count.twoDigitString())"
     }
     
     private lazy var timer = Timer()
     private lazy var seconds: Int = initialTimerSeconds
-    private lazy var isRunning: Bool = false
+    private(set) var isRunning: Bool = false
+    
+    let apiClient: RequestExecuter
+    
+    init(apiClient: RequestExecuter) {
+        self.apiClient = apiClient
+    }
     
     // MARK: - Table population functions
     
     func fetchJavaKeywords() {
         self.loadingDelegate?.isLoading()
         
-        Requester.execute(router: .keywords) { [unowned self] (result: Result<KeywordsQaA, Error>) in
+        apiClient.execute(router: .keywords) { [unowned self] (result: Result<KeywordsQaA, Error>) in
             switch result {
             case .success(let keywords):
                 let answer = keywords.answer
