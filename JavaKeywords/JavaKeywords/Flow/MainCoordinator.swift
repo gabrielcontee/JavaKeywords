@@ -24,8 +24,7 @@ class MainCoordinator: Coordinator{
     }
     
     func start() {
-        let viewModel = KeywordsViewModel(apiClient: Requester())
-        let keywordsVC = KeywordsViewController(with: viewModel)
+        let keywordsVC = KeywordsViewController()
         keywordsVC.coordinator = self
         navigationController.pushViewController(keywordsVC, animated: false)
     }

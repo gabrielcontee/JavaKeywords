@@ -10,12 +10,7 @@ import UIKit
 
 final class KeywordsViewController: UIViewController {
     
-    private let viewModel: KeywordsViewModel
-
-    init(with viewModel: KeywordsViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: String(describing: Self.self), bundle: .main)
-    }
+    let viewModel = KeywordsViewModel(apiClient: Requester())
     
     weak var coordinator: MainCoordinator?
     
@@ -62,9 +57,6 @@ final class KeywordsViewController: UIViewController {
         viewModel.changeTimerState()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
 extension KeywordsViewController: UITableViewDataSource, TableReloadProtocol {
